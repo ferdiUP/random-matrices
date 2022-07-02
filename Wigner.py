@@ -2,10 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# Defining the semi-circle law
 def demicercle(t):
     return (1/(2*np.pi))*np.sqrt(4-t**2)
 
 
+# Defining the Marcenko-Pastur distribution
 def mp(t, c):
     if max(1-1/c, 0) == 0:
         d0 = 0
@@ -18,6 +20,7 @@ def mp(t, c):
     return d0+d1
 
 
+# Setting the dimensions
 n = 500
 N = 2*n
 p = 150
@@ -46,6 +49,7 @@ for i in range(N):
 
 W = 1/p*np.dot(W, np.transpose(W))
 
+# Getting normalized eigenvalues of M
 s1 = np.linalg.eig(1/np.sqrt(N)*M)
 s2 = np.linalg.eig(W)
 
@@ -55,6 +59,7 @@ s3 = np.linalg.eig(P1)
 s3vsym = np.linalg.eig(P2)
 s4 = np.linalg.eigvals(P2)
 
+# Histogram plotting for convergence illutration
 fig = plt.figure()
 plt.hist(s1[0], 40, density=True)
 x1 = np.linspace(-2, 2, 1000)
